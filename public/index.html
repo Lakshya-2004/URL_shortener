@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shorten_URL</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <h1>URL_Shortener</h1>
+    <form id="form-style">
+        <div>
+            <label for="url">Enter the URL</label>
+            <input type="url" name="url" id="url" required>
+        </div>
+        <div>
+            <label for="shortcode">Enter the Shortcode</label>
+            <input type="text" name="shortcode" id="shortcode" required>
+        </div>
+        <button type="submit" id="sbm_btn"> Shorten </button>
+    </form>
+
+    <h4>Shorten URL</h4>
+    <ul id="Shorten_url"></ul>
+    <script>
+
+        const fetchlink = async () => {
+            const response = await fetch("/links");
+            const links =  await response.json();
+            console.log(links);
+            const linkdata = document.getElementById("Shorten_url");
+            linkdata.innerHTML = " ";
+            for (const [shortcode, url] of Object.entries(links)) {
+                console.log(`${shortcode} : ${url}`);
+                const li = document.createElement('li');
+                const truncatedurl=url.length>=30?`${url.slice(0,30)}....`:url;
+                li.innerHTML=`<a href="/${shortcode}" target="_blank">${window.location.origin}/${shortcode}</a> --- ${truncatedurl}`;
+                linkdata.appendChild(li);
+            }
+        }
+        document.getElementById('form-style').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formdata = new FormData(event.target);
+            const url = formdata.get("url");
+            const shortcode = formdata.get("shortcode");
+            console.log(url, shortcode);
+            try {
+                const res = await fetch("/shorten", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ url, shortcode })
+                })
+                if (res.ok) {
+                    alert("SuccessFully done!! ");
+                    fetchlink();
+                    event.target.reset();
+                }
+                const data = await res.json();
+
+                if (!res.ok) {
+                    alert(data.message);
+                    event.target.reset();
+                    return;
+                }
+
+            } catch (error) {
+                console.log(error);
+            }
+            fetchlink();
+        });
+
+    </script>
+</body>
+
+</html>

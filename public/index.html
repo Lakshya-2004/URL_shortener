@@ -28,15 +28,15 @@
 
         const fetchlink = async () => {
             const response = await fetch("/links");
-            const links =  await response.json();
+            const links = await response.json();
             console.log(links);
             const linkdata = document.getElementById("Shorten_url");
             linkdata.innerHTML = " ";
             for (const [shortcode, url] of Object.entries(links)) {
                 console.log(`${shortcode} : ${url}`);
                 const li = document.createElement('li');
-                const truncatedurl=url.length>=30?`${url.slice(0,30)}....`:url;
-                li.innerHTML=`<a href="/${shortcode}" target="_blank">${window.location.origin}/${shortcode}</a> --- ${truncatedurl}`;
+                const truncatedurl = url.length >= 30 ? `${url.slice(0, 30)}....` : url;
+                li.innerHTML = `<a href="/${shortcode}" target="_blank">${window.location.origin}/${shortcode}</a> --- ${truncatedurl}`;
                 linkdata.appendChild(li);
             }
         }
@@ -45,28 +45,30 @@
             const formdata = new FormData(event.target);
             const url = formdata.get("url");
             const shortcode = formdata.get("shortcode");
-            console.log(url, shortcode);
+
             try {
                 const res = await fetch("/shorten", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ url, shortcode })
-                })
-                if (res.ok) {
-                    alert("SuccessFully done!! ");
-                    fetchlink();
-                    event.target.reset();
-                }
-                const data = await res.json();
+                });
 
-                if (!res.ok) {
-                    alert(data.message);
-                    event.target.reset();
-                    return;
+                let data;
+                try {
+                    data = await res.json();
+                } catch {
+                    data = { message: await res.text() }; // fallback to plain text
+                }
+
+                if (res.ok) {
+                    alert("Successfully done!!");
+                } else {
+                    alert(data.message || "Something went wrong!");
                 }
 
             } catch (error) {
-                console.log(error);
+                console.error(error);
+                alert("An unexpected error occurred.");
             }
             fetchlink();
         });

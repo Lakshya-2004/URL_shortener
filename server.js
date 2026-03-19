@@ -62,12 +62,13 @@ app.post("/", async (req, res) => {
         const links = await getLink();
         const Finalcode = shortcode || crypto.randomBytes(4).toString("hex");
         if (links[Finalcode]) {
-            return res.status(400).send("It already exists, use different ShortCode");
+            return res.redirect("/");
+            //return res.status(400).send("It already exists, use different ShortCode");
         }
         links[Finalcode] = url;
         await writeFile(links_data, JSON.stringify(links, null, 2));
 
-        return res.json({ success: true, message: "Short URL created successfully", shortcode: Finalcode });
+        return res.redirect("/");
     } catch (error) {
         console.error(error);
         return res.status(500).json({ success: false, message: "Server error occurred" });

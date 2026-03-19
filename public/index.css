@@ -1,141 +1,121 @@
-/* Reset and base */
+/* Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Urbanist', Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
 }
 
+/* Body */
 body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: #f5f6fa; /* light neutral background */
-    color: #333;
-    padding: 20px;
+  background: linear-gradient(135deg, #eef2f7, #ffffff);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+  min-height: 100vh;
 }
 
 /* Heading */
 h1 {
-    margin-bottom: 25px;
-    font-size: 2.5rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #1e1e2f;
+  font-size: 38px;
+  color: #2c2c3a;
+  margin-bottom: 30px;
 }
 
-/* Form styling */
-#form-style {
-    background: #ffffff;
-    padding: 35px 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    width: 360px;
-    transition: 0.3s;
-}
-
-#form-style:hover {
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-}
-
-#form-style div {
-    margin-bottom: 18px;
+/* Form */
+form {
+  background: #ffffff;
+  padding: 25px 30px;
+  border-radius: 15px;
+  width: 320px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Labels */
 label {
-    display: block;
-    margin-bottom: 6px;
-    color: #444;
-    font-weight: 600;
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
 }
 
-/* Input fields */
+/* Inputs */
 input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    outline: none;
-    font-size: 1rem;
-    transition: 0.3s;
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: all 0.3s ease;
 }
 
+/* Input focus */
 input:focus {
-    border-color: #2575fc;
-    box-shadow: 0 0 8px rgba(37, 117, 252, 0.3);
+  border-color: #6c63ff;
+  box-shadow: 0 0 5px rgba(108, 99, 255, 0.4);
 }
 
-/* Submit button */
-#sbm_btn {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    background: wheat;
-    color: #000000;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #f6d365, #fda085);
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
-#sbm_btn:hover {
-    transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(245, 222, 179, 0.4); /* wheat RGBA with 0.4 opacity */
+/* Button hover */
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Section heading */
+/* Sub heading */
 h4 {
-    margin-top: 35px;
-    margin-bottom: 10px;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #1e1e2f;
+  margin-top: 40px;
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #333;
 }
 
-/* URL list */
-#Shorten_url {
-    margin-top: 10px;
-    list-style: none;
-    padding: 0;
-    width: 360px;
+/* List container */
+ul {
+  list-style: none;
+  width: 400px;
+  padding: 0;
 }
 
-#Shorten_url li {
-    background: #ffffff;
-    color: #1e1e2f;
-    padding: 12px 15px;
-    margin: 8px 0;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.95rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: 0.3s;
+/* List items */
+li {
+  background: #ffffff;
+  margin-bottom: 12px;
+  padding: 12px 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  font-size: 14px;
+  word-break: break-all;
 }
 
-#Shorten_url li:hover {
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+/* Links */
+a {
+  color: #0077ff;
+  font-weight: bold;
+  text-decoration: none;
 }
 
-/* Links inside list */
-#Shorten_url li a {
-    color: #1b4da4;
-    text-decoration: none;
-    font-weight: 500;
+a:hover {
+  text-decoration: underline;
 }
 
-#Shorten_url li a:hover {
-    text-decoration: underline;
-}
-
-/* Responsive for mobile */
-@media (max-width: 400px) {
-    #form-style, #Shorten_url {
-        width: 90%;
-    }
+/* Mobile responsive */
+@media (max-width: 500px) {
+  form,
+  ul {
+    width: 90%;
+  }
 }

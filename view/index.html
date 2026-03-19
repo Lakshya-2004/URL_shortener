@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shorten_URL</title>
+    <link rel="stylesheet" href="/index.css">
+</head>
+
+<body>
+    <h1>URL_Shortener</h1>
+    <form action="/" method="post">
+        <div>
+            <label for="url">Enter the URL</label>
+            <input type="url" name="url" id="url" required>
+        </div>
+        <div>
+            <label for="shortcode">Enter the Shortcode</label>
+            <input type="text" name="shortcode" id="shortcode" required>
+        </div>
+        <button type="submit" id="sbm_btn"> Shorten </button>
+    </form>
+
+    <h4>Shorten URL</h4>
+    <ul> {{Shorten_url}} </ul>
+   
+</body>
+
+</html>

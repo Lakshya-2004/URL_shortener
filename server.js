@@ -58,7 +58,7 @@ app.get("/", async (req, res) => {
 });
 app.post("/", async (req, res) => {
     try {
-        const { url, shortcode } = req.body();
+        const { url, shortcode } = req.body;
         const links = await getLink();
         const Finalcode = shortcode || crypto.randomBytes(4).toString("hex");
         if (links[Finalcode]) {
@@ -66,10 +66,11 @@ app.post("/", async (req, res) => {
         }
         links[Finalcode] = url;
         await writeFile(links_data, JSON.stringify(links, null, 2));
-        return res.send("Short URL created successfully");
+        console.log("Short URL created successfully");
+        return res.redirect('/');
     } catch (error) {
         console.error(error);
-        return res.status(500).send("Server error");
+        return res.status(500).send("Server error occurred ");
     }
 
 });

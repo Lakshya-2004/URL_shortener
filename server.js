@@ -66,11 +66,11 @@ app.post("/", async (req, res) => {
         }
         links[Finalcode] = url;
         await writeFile(links_data, JSON.stringify(links, null, 2));
-      alert("Short URL created successfully");
-        return res.redirect('/');
+
+        return res.json({ success: true, message: "Short URL created successfully", shortcode: Finalcode });
     } catch (error) {
         console.error(error);
-        return res.status(500).send("Server error occurred ");
+        return res.status(500).json({ success: false, message: "Server error occurred" });
     }
 
 });

@@ -66,7 +66,7 @@ app.post("/", async (req, res) => {
         }
         links[Finalcode] = url;
         await writeFile(links_data, JSON.stringify(links, null, 2));
-        console.log("Short URL created successfully");
+      alert("Short URL created successfully");
         return res.redirect('/');
     } catch (error) {
         console.error(error);

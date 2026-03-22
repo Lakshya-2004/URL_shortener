@@ -1,26 +1,11 @@
 import crypto from "crypto";
 import { getLink,SaveLink } from "../Models/DataHandler.models.js"; 
-import { readFile,writeFile } from "fs/promises";
-import  path  from "path";
+
 export const GetMethod= async(req, res) => {
     try {
-        const filedata = await readFile(path.join("view", "index.html"));
+       
         const links = await getLink();
-        const content = filedata
-            .toString()
-            .replaceAll(
-                "{{Shorten_url}}",
-                Object.entries(links)
-                    .map(([shortcode, url]) => {
-                        return `<li>
-          <a href="/${shortcode}" target="_blank">
-            ${req.headers.host}/${shortcode}
-          </a> --- ${url}
-        </li>`;
-                    })
-                    .join("")
-            );
-        res.send(content);
+       return res.render("index",{links ,host:req.host});
     } catch (error) {
         console.error(error);
         return res.status(500).send("Internal server error");

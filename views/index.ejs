@@ -23,8 +23,26 @@
     </form>
 
     <h4>Shorten URL</h4>
-    <ul> {{Shorten_url}} </ul>
-   
+    <ul>
+        <!-- Object.entries(links)
+        .map(([shortcode, url]) => {
+        return `<li>
+            <a href="/${shortcode}" target="_blank">
+                ${host}/${shortcode}
+            </a> --- ${url}
+        </li>`;
+        })
+        .join("") -->
+         <% Object.entries(links).map(([shortcode, url]) => {%>
+       <li>
+            <a href="/<%=shortcode%>" target="_blank"> <%=host%>/<%=shortcode%>
+            </a> --- <%=url%>
+        </li>;
+       <% })%>
+        
+
+    </ul>
+
 </body>
 
 </html>

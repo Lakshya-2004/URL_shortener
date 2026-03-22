@@ -24,19 +24,12 @@
 
     <h4>Shorten URL</h4>
     <ul>
-        <!-- Object.entries(links)
-        .map(([shortcode, url]) => {
-        return `<li>
-            <a href="/${shortcode}" target="_blank">
-                ${host}/${shortcode}
-            </a> --- ${url}
-        </li>`;
-        })
-        .join("") -->
+       
          <% Object.entries(links).map(([shortcode, url]) => {%>
-       <li>
+      <% const cuturl =url.length >= 30 ? `${url.slice(0,30)}...` : url %>
+            <li>
             <a href="/<%=shortcode%>" target="_blank"> <%=host%>/<%=shortcode%>
-            </a> --- <%=url%>
+            </a> --- <%=cuturl%>
         </li>;
        <% })%>
         
